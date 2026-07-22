@@ -27,7 +27,13 @@ if (-not $Plan) {
   $pid = Ask '常连的对端 RustDesk ID(可留空)' ''
   $mods += @{ name='client-rustdesk'; params=@{ server_ip=$sip; key=$key; peer_id=$pid } }
 
-  if ($tier -ne 'A' -and (Confirm '接入 WG/ZT overlay(B档,需服务器已开)?')) { $mods += @{ name='client-overlay'; params=@{} } }
+  if ($tier -ne 'A' -and (Confirm '接入 WireGuard overlay(B档,需服务器已开 wireguard-hub)?')) {
+    $hp  = Ask 'hub 公钥(服务器 wireguard-hub 装完打印的 HUB 公钥)' ''
+    $he  = Ask 'hub Endpoint(公网IP:端口,如 1.2.3.4:51820)' ''
+    $mip = Ask '给本机分配的内网 IP(如 10.66.0.5)' ''
+    $sn  = Ask 'WG 子网' '10.66.0.0/24'
+    $mods += @{ name='client-overlay'; params=@{ hub_pubkey=$hp; hub_endpoint=$he; my_ip=$mip; subnet=$sn } }
+  }
   if (Confirm '装 Line Panel 线路面板?') { $mods += @{ name='line-panel'; params=@{} } }
 
   $planObj = @{ version=1; role='client'; tier=$tier; modules=$mods }

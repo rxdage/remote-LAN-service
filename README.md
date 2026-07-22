@@ -64,4 +64,7 @@ Early but usable at Tier A:
 - **Windows client** — `setup.exe` **GUI wizard** (WPF, multi-step, tier A) — built from
   `installer/gui/setup-wizard.ps1` via `scripts/build-windows-exe.ps1`; also runnable as the
   console `install.ps1`. The exe ships via GitHub Releases (not committed to git).
-- B/C modules are scaffolded. See [SPEC.md](SPEC.md) for the roadmap.
+- **Tier B** — `wireguard-hub` + `zerotier-moon` (server) and `client-overlay` (Windows) modules
+  are implemented (manual peer exchange; see [docs/quickstart-B.md](docs/quickstart-B.md)). Not
+  yet wired into the GUI wizard (console/TUI only for B).
+- **Tier C** (dual-server) is scaffolded. See [SPEC.md](SPEC.md) for the roadmap.

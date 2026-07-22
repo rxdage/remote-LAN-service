@@ -101,7 +101,8 @@ run_wizard(){
     local params="{}"
     case "$m" in
       rustdesk-server) local ip; ip="$(ask '服务器公网 IP' "$pub")"; params="{\"public_ip\":\"$ip\"}" ;;
-      wireguard-hub)   local ip; ip="$(ask 'WG hub 公网 IP' "$pub")"; params="{\"public_ip\":\"$ip\",\"subnet\":\"10.66.0.0/24\",\"port\":51820}" ;;
+      wireguard-hub)   local ip sn; ip="$(ask 'WG hub 公网 IP' "$pub")"; sn="$(ask 'WG 子网(约定即可)' '10.66.0.0/24')"; params="{\"public_ip\":\"$ip\",\"subnet\":\"$sn\",\"port\":51820}" ;;
+      zerotier-moon)   local ip; ip="$(ask 'ZeroTier moon 公网 IP' "$pub")"; params="{\"public_ip\":\"$ip\"}" ;;
       client-rustdesk) local sip pid; sip="$(ask 'RustDesk 服务器 IP' '')"; pid="$(ask '要连的对端 RustDesk ID(可留空)' '')"; params="{\"server_ip\":\"$sip\",\"peer_id\":\"$pid\"}" ;;
     esac
     [ -n "$plan_mods" ] && plan_mods="$plan_mods,"
