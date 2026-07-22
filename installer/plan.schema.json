@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "remote-LAN-service install plan",
+  "description": "The single artifact all three front-ends (Linux TUI / Windows GUI / unattended) produce and the executor consumes. Secrets do NOT go here — see docs/SECURITY.md.",
+  "type": "object",
+  "required": ["version", "role", "tier", "modules"],
+  "properties": {
+    "version": { "const": 1 },
+    "role": { "enum": ["server", "client"], "description": "This machine's role" },
+    "tier": { "enum": ["A", "B", "C"], "description": "A simple / B multi-line / C dual-server" },
+    "modules": {
+      "type": "array",
+      "description": "Ordered list of modules to run; each maps to installer/modules/<name>/",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "enum": [
+              "rustdesk-server", "wireguard-hub", "zerotier-moon", "headscale", "second-region",
+              "client-rustdesk", "client-overlay", "line-panel"
+            ]
+          },
+          "params": {
+            "type": "object",
+            "description": "Module-specific values collected by the wizard (server public IP, ports, peer addresses, etc). Free-form per module; each module documents its keys.",
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    "notes": { "type": "string", "description": "Free text, e.g. which tier the customer intends to grow into" }
+  }
+}

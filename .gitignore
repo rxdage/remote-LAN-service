@@ -1,0 +1,30 @@
+# NEVER commit secrets — bring-your-own, keep them out of git.
+*.pem
+*.key
+id_ed25519*
+*.conf
+!*.example.conf
+.env
+.env.*
+!*.example.env
+secrets*
+*password*
+*credential*
+
+# runtime / customer-specific install plans may hold addresses — keep private
+install-plan.json
+install-plan.*.json
+!install-plan.example.json
+
+# pre-staged vendor binaries (customer downloads these; don't bloat the repo)
+installer/vendor/
+*.zip
+*.msi
+*.exe
+!setup.exe.placeholder
+
+# build / junk
+*.log
+*.tmp
+.DS_Store
+Thumbs.db

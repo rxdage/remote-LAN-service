@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "_comment": "Sample plans for each tier. Copy the block you want into install-plan.json (gitignored) or feed with --plan. The wizard normally generates this for you.",
+
+  "_tier_A_server": {
+    "version": 1,
+    "role": "server",
+    "tier": "A",
+    "modules": [
+      { "name": "rustdesk-server", "params": {
+        "public_ip": "203.0.113.10",
+        "_comment": "hbbs listens 21115/21116(tcp+udp)/21118; hbbr 21117/21119. Key auto-generated on first run."
+      }}
+    ],
+    "notes": "Start simple: connect by RustDesk ID. Grow to B by adding wireguard-hub."
+  },
+
+  "role": "server",
+  "tier": "A",
+  "modules": [
+    { "name": "rustdesk-server", "params": { "public_ip": "203.0.113.10" } }
+  ],
+
+  "_tier_B_server_example": {
+    "role": "server", "tier": "B",
+    "modules": [
+      { "name": "rustdesk-server", "params": { "public_ip": "203.0.113.10" } },
+      { "name": "wireguard-hub",  "params": { "public_ip": "203.0.113.10", "subnet": "10.66.0.0/24", "port": 51820 } },
+      { "name": "zerotier-moon",  "params": { "public_ip": "203.0.113.10" } }
+    ]
+  },
+
+  "_tier_A_client_windows": {
+    "role": "client", "tier": "A",
+    "modules": [
+      { "name": "client-rustdesk", "params": { "server_ip": "203.0.113.10", "peer_id": "123456789" } },
+      { "name": "line-panel",      "params": {} }
+    ]
+  }
+}
