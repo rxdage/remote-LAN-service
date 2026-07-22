@@ -1,5 +1,7 @@
 # remote-LAN-service
 
+**⬇ Windows client: [download setup.exe (latest release)](https://github.com/rxdage/remote-LAN-service/releases/latest/download/setup.exe)** — double-click, follow the wizard. (Unsigned build; SmartScreen → "More info → Run anyway".)
+
 Own your remote access. A **wizard-installed**, self-hosted way to reach your machines
 (remote desktop over a relay/VLAN you control) — you bring a cloud server and your own
 devices, the installer sets everything up. No TeamViewer/Sunlogin-style public service.
