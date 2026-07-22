@@ -131,7 +131,7 @@ remote-LAN-service/
 
 1. **M0 骨架**:仓结构 + plan.schema + 一个跑得起来的 Linux TUI(只有 A 档 rustdesk-server 一个模块)——最小可用,先让第一个客户用 A 跑起来。
 2. **M1 B 档模块**:WG hub / ZT moon 模块 + 客户端 overlay 接入 + Line Panel 集成。
-3. **M2 Windows GUI setup.exe**:WPF 向导打包,客户端主战场。
+3. **M2 Windows GUI setup.exe**:WPF 向导打包,客户端主战场。**[A 档已做](installer/gui/setup-wizard.ps1)**:多步图形向导(欢迎/档位→连接信息→确认→安装),ps2exe 打包成 `setup.exe`(requireAdmin + 无控制台);B/C 档接入待 M1/M3 模块就绪后补进向导。
 4. **M3 C 档**:第二服务器 + 备份/切换 + 双服 verify。
 5. **M4 打磨**:无人值守 plan、release 产物+校验和、quickstart 三件套定稿。
 

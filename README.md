@@ -57,5 +57,9 @@ separate arrangement with the author.
 
 ## Status
 
-Early. **Tier A (Linux server + Windows client) is the current working target**; B/C modules are
-scaffolded. See [SPEC.md](SPEC.md) for the roadmap.
+Early but usable at Tier A:
+- **Linux server** — `install.sh` TUI wizard + rustdesk-server module: working.
+- **Windows client** — `setup.exe` **GUI wizard** (WPF, multi-step, tier A) — built from
+  `installer/gui/setup-wizard.ps1` via `scripts/build-windows-exe.ps1`; also runnable as the
+  console `install.ps1`. The exe ships via GitHub Releases (not committed to git).
+- B/C modules are scaffolded. See [SPEC.md](SPEC.md) for the roadmap.
