@@ -1,0 +1,17 @@
+# Shell/env run on Linux servers — MUST stay LF or bash breaks after a Windows checkout+scp.
+*.sh    text eol=lf
+*.env   text eol=lf
+meta.env text eol=lf
+
+# Cross-platform text — normalize to LF in the repo.
+*.md    text eol=lf
+*.json  text eol=lf
+
+# Windows-side scripts — CRLF is fine; they carry a UTF-8 BOM for PS 5.1 anyway.
+*.ps1   text eol=crlf
+
+# Binaries — never touch.
+*.zip   binary
+*.msi   binary
+*.exe   binary
+*.ico   binary
