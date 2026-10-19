@@ -25,7 +25,7 @@
     "role": "server", "tier": "B",
     "modules": [
       { "name": "rustdesk-server", "params": { "public_ip": "203.0.113.10" } },
-      { "name": "wireguard-hub",  "params": { "public_ip": "203.0.113.10", "subnet": "10.66.0.0/24", "port": 51820 } },
+      { "name": "wireguard-hub",  "params": { "public_ip": "203.0.113.10", "subnet": "10.99.0.0/24", "port": 51820 } },
       { "name": "zerotier-moon",  "params": { "public_ip": "203.0.113.10" } }
     ]
   },

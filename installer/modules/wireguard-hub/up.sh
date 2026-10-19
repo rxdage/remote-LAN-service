@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # wireguard-hub up: hub-and-spoke WG on this VPS. Idempotent (won't overwrite wg0.conf).
-# Params: public_ip, subnet(default 10.66.0.0/24), port(default 51820)
+# Params: public_ip, subnet(default 10.99.0.0/24), port(default 51820)
 set -euo pipefail
 info(){ printf '\033[36m%s\033[0m\n' "$*"; }
 ok(){   printf '\033[32m%s\033[0m\n' "$*"; }
@@ -9,7 +9,7 @@ die(){  printf '\033[31m%s\033[0m\n' "$*" >&2; exit 1; }
 
 read_param(){ printf '%s' "${RLS_PARAMS:-{}}" | python3 -c "import json,sys;print(json.load(sys.stdin).get('$1','$2'))"; }
 public_ip="$(read_param public_ip '')"
-subnet="$(read_param subnet '10.66.0.0/24')"
+subnet="$(read_param subnet '10.99.0.0/24')"
 port="$(read_param port 51820)"
 [ -n "$public_ip" ] || die "缺 public_ip"
 

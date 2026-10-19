@@ -1,5 +1,5 @@
 ﻿# client-overlay (Windows): join the WireGuard hub. Tier B client.
-# Params: hub_pubkey, hub_endpoint (ip:port), my_ip (e.g. 10.66.0.5), subnet (e.g. 10.66.0.0/24)
+# Params: hub_pubkey, hub_endpoint (ip:port), my_ip (e.g. 10.99.0.5), subnet (e.g. 10.99.0.0/24)
 # Private key is generated HERE and never leaves this machine; only the public key is shown
 # for you to add on the hub. Installs the tunnel as a SERVICE (not GUI import — that drops on quit).
 [CmdletBinding()] param([Parameter(Mandatory)]$Params)
@@ -11,7 +11,7 @@ function Warn($m){ Write-Host $m -ForegroundColor Yellow }
 $hubPub = [string]$Params.hub_pubkey
 $hubEp  = [string]$Params.hub_endpoint
 $myIp   = [string]$Params.my_ip
-$subnet = [string]$Params.subnet; if (-not $subnet) { $subnet = '10.66.0.0/24' }
+$subnet = [string]$Params.subnet; if (-not $subnet) { $subnet = '10.99.0.0/24' }
 if (-not $hubPub -or -not $hubEp -or -not $myIp) { throw '缺 hub_pubkey / hub_endpoint / my_ip' }
 $cidr = ($subnet -split '/')[1]; if (-not $cidr) { $cidr = '24' }
 

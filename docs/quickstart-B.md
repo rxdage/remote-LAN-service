@@ -23,23 +23,23 @@ sudo bash installer/install.sh      # 角色=服务器 → 档位=B → 勾 Wire
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File installer\install.ps1
 ```
-向导选 **档位 B → 接入 WireGuard**,填:上一步的 **HUB 公钥 / HUB Endpoint**、给本机分配一个**内网 IP**(如 `10.66.0.5`,每台不同)。
+向导选 **档位 B → 接入 WireGuard**,填:上一步的 **HUB 公钥 / HUB Endpoint**、给本机分配一个**内网 IP**(如 `10.99.0.5`,每台不同)。
 
 装完它会打印**本机公钥** + 一行命令。
 
 ## 4. 在服务器把客户端加为 peer(手动交换,私钥不出客户端)
-把客户端打印的公钥拿到服务器上跑(示例把它设为 `10.66.0.5`):
+把客户端打印的公钥拿到服务器上跑(示例把它设为 `10.99.0.5`):
 ```bash
-sudo wg set wg0 peer <客户端公钥> allowed-ips 10.66.0.5/32
+sudo wg set wg0 peer <客户端公钥> allowed-ips 10.99.0.5/32
 # 并把同样的 [Peer] 追加进 /etc/wireguard/wg0.conf 以持久化(重启不丢)
 ```
-每台客户端重复 3-4,各给一个不同的 `10.66.0.x`。
+每台客户端重复 3-4,各给一个不同的 `10.99.0.x`。
 
 ## 5. 用
-现在两台客户端都在 `10.66.0.0/24` 这张内网里。RustDesk 里**填对方的内网 IP**(如 `10.66.0.5`)直连 —— 走 WG 隧道,不碰 RustDesk 服务器。A 档的"按 ID 连"仍然可用,作为 UDP 被封时的兜底。
+现在两台客户端都在 `10.99.0.0/24` 这张内网里。RustDesk 里**填对方的内网 IP**(如 `10.99.0.5`)直连 —— 走 WG 隧道,不碰 RustDesk 服务器。A 档的"按 ID 连"仍然可用,作为 UDP 被封时的兜底。
 
 ## 验证 / 排障
-- 客户端 `ping 10.66.0.1`(hub)通 = 隧道起来了;`ping` 对方 `10.66.0.x` 通 = 两端 peer 都加对了。
+- 客户端 `ping 10.99.0.1`(hub)通 = 隧道起来了;`ping` 对方 `10.99.0.x` 通 = 两端 peer 都加对了。
 - 连不上先查:云安全组 UDP 51820?两端 peer 都加了吗?客户端隧道服务在跑吗(`Get-Service 'WireGuardTunnel$*'`)?
 
 ## 想扛服务器整机挂掉?→ C 双服
